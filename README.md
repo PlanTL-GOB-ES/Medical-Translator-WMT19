@@ -14,7 +14,7 @@ The available language directions for translation are:
 * Spanish to Portuguese
 * Portuguese to Spanish
 
-Translation models must be downloaded from the Zenodo repository: https://doi.org/10.5281/zenodo.2204995
+Translation models must be downloaded from the Zenodo repository: https://doi.org/10.5281/zenodo.3346802
 
 
 ## Prerequisites
@@ -32,15 +32,12 @@ Tokenize_SP.sh 	 - Utility script to tokenize the input file using BPE (needed f
 </pre> 
 In Zenodo you will find the following files:
 <pre>
-enes_pt.bpe32000 	 - BPE encoding where source language are either EN/ES and target is PT
-enpt_es.bpe32000 	 - BPE encoding where source language are either EN/PT and target is ES
-espt_en.bpe32000 	 - BPE encoding where source language are either ES/PT and target is EN
-onmt_enes_pt-4-1000-600_epoch11_62.74_release.t7 - OpenNMT model in release format (EN/ES) -> PT
-onmt_enpt_es-4-1000-600_epoch11_60.38_release.t7 - OpenNMT model in release format (EN/PT) -> ES
-onmt_espt_en-4-1000-600_epoch6_51.52_release.t7  - OpenNMT model in release format (ES/PT) -> EN
-onmt_enes_pt-4-1000-600_epoch11_62.74.t7  - OpenNMT model in original format (EN/ES) -> PT
-onmt_enpt_es-4-1000-600_epoch11_60.38_.t7 - OpenNMT model in original format (EN/PT) -> ES
-onmt_espt_en-4-1000-600_epoch6_51.52.t7   - OpenNMT model in original format (ES/PT) -> EN
+enes_pt.bpe32000 	 - SP encoding where source language are either EN/ES and target is PT
+enpt_es.bpe32000 	 - SP encoding where source language are either EN/PT and target is ES
+espt_en.bpe32000 	 - SP encoding where source language are either ES/PT and target is EN
+enes_pt_model.pt  - OpenNMT-py model in original format (EN/ES) -> PT
+pten_es_model.pt  - OpenNMT-py model in original format (EN/PT) -> ES
+espt_en_model.pt  - OpenNMT-py model in original format (ES/PT) -> EN
 </pre> 
 
 
@@ -62,8 +59,8 @@ Options:
 <pre>
 $ .Tokenize_SP.sh -d /home/user/data -s en -t es -f /home/user/text.txt
 $ cd /home/user/OpenNMT-py
-$ python3 translate.py -model /home/user/data/PT_ES/small_transformer_step_90000.pt -gpu 0 -src /home/user/text.txt.tok -replace_unk -output /home/user/text.translated
-$ 
+$ python3 translate.py -model /home/user/data/espt_en_model.pt -gpu 0 -src /home/user/text.txt.tok -replace_unk -output /home/user/text.translated
+$ spm_decode --model=/home/user/data/espt_enSP32k.model < /home/user/text.translated> /home/user/text.translated.detokenized;
 </pre>
 
 
