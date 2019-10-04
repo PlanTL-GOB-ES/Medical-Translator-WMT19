@@ -16,6 +16,8 @@ The available language directions for translation are:
 
 Translation models must be downloaded from the Zenodo repository: https://doi.org/10.5281/zenodo.3346802
 
+We use sentencepiece (https://github.com/google/sentencepiece) and the Transformer architecture for all models.
+
 
 ## Prerequisites
 
